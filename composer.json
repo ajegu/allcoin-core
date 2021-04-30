@@ -3,7 +3,7 @@
   "description": "The AllCoin Core is a library used by AllCoin-Track and AllCoin-Trade.",
   "keywords": ["framework", "laravel", "lumen", "crypto", "bitcoin"],
   "license": "MIT",
-  "type": "project",
+  "type": "library",
   "require": {
     "php": "^8.0",
     "ajegu/binance-sdk": "^1",
