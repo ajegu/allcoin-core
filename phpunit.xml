@@ -22,7 +22,7 @@
         </include>
         <exclude>
             <directory suffix=".php">src/ServiceProvider</directory>
-            <directory suffix=".php">src/Dto</directory>
+            <directory suffix=".php">src/Lambda/Event</directory>
             <directory suffix=".php">src/Model</directory>
             <directory suffix=".php">src/Exception</directory>
         </exclude>
