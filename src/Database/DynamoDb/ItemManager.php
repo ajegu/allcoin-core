@@ -174,4 +174,22 @@ class ItemManager implements ItemManagerInterface
 
         return $itemManager->fetchOneOnLSI($partitionKey, $lsiKeyName, $lsiKey);
     }
+
+    /**
+     * @param string $partitionKey
+     * @param string $sortKey
+     * @return array
+     * @throws ItemReadException
+     */
+    public function fetchLast(string $partitionKey, string $sortKey): array
+    {
+        $itemManager = new ItemReadManager(
+            $this->dynamoDbClient,
+            $this->marshalerService,
+            $this->logger,
+            $this->tableName
+        );
+
+        return $itemManager->fetchLast($partitionKey, $sortKey);
+    }
 }

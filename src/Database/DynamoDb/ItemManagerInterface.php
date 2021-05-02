@@ -66,4 +66,12 @@ interface ItemManagerInterface
      * @throws ItemReadException
      */
     public function fetchOneOnLSI(string $partitionKey, string $lsiKeyName, string $lsiKey): array;
+
+    /**
+     * @param string $partitionKey
+     * @param string $sortKey
+     * @return array
+     * @throws ItemReadException
+     */
+    public function fetchLast(string $partitionKey, string $sortKey): array;
 }

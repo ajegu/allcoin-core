@@ -6,7 +6,7 @@ namespace AllCoinCore\Lambda\Event;
 
 use DateTime;
 
-class PriceSearchEvent
+class LambdaPriceSearchEvent implements LambdaEvent
 {
     private string $pair;
     private DateTime $startAt;

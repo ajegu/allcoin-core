@@ -144,6 +144,31 @@ class ItemReadManager
         return $this->executeFetchOneQuery($query);
     }
 
+    /**
+     * @param string $partitionKey
+     * @param string $sortKey
+     * @return array
+     * @throws ItemReadException
+     */
+    public function fetchLast(string $partitionKey, string $sortKey): array
+    {
+        $partitionKeyValue = $this->marshalValueForReadOperation($partitionKey);
+        $sortKeyValue = $this->marshalValueForReadOperation($sortKey);
+
+        $query = [
+            'TableName' => $this->tableName,
+            'KeyConditionExpression' => ItemManager::PARTITION_KEY_NAME . ' = :partitionKeyValue and begins_with(' . ItemManager::SORT_KEY_NAME . ', :sortKeyValue)',
+            'ExpressionAttributeValues' => [
+                ':partitionKeyValue' => $partitionKeyValue,
+                ':sortKeyValue' => $sortKeyValue
+            ],
+            'Limit' => 1,
+            'ScanIndexForward' => false
+        ];
+
+        return $this->executeFetchOneQuery($query);
+    }
+
 
     /**
      * @param array $query

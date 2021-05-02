@@ -6,6 +6,7 @@ namespace AllCoinCore\ServiceProvider;
 
 use AllCoinCore\Exception\ServiceProviderException;
 use Aws\DynamoDb\DynamoDbClient;
+use Aws\Lambda\LambdaClient;
 use Aws\Sns\SnsClient;
 use Illuminate\Support\ServiceProvider;
 
@@ -30,6 +31,7 @@ class AwsServiceProvider extends ServiceProvider
 
         $this->registerAwsDynamoDbClient($args);
         $this->registerAwsSnsClient($args);
+        $this->registerAwsLambdaClient($args);
     }
 
     private function registerAwsDynamoDbClient($args): void
@@ -43,6 +45,13 @@ class AwsServiceProvider extends ServiceProvider
     {
         $this->app->singleton(SnsClient::class, function () use ($args) {
             return new SnsClient($args);
+        });
+    }
+
+    private function registerAwsLambdaClient($args): void
+    {
+        $this->app->singleton(LambdaClient::class, function () use ($args) {
+            return new LambdaClient($args);
         });
     }
 }
